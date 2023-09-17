@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
 import LayoutMaster from "../layouts/LayoutMaster";
 import Product from "../models/Product";
+import ProductItem from "../components/products/ProductItem";
 function Home(props) {
-  const [product, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
+  const image = "http://127.0.0.1:8000/";
 
-useEffect(() => {
-  Product.all()
-    .then((res) => {
-      setProducts(res.data);
-    console.log(res.data)
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-}, []);
+  useEffect(() => {
+    Product.all()
+      .then((res) => {
+        setProducts(res);
+        console.log(res[0].name);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   return (
     <LayoutMaster>
@@ -98,49 +100,52 @@ useEffect(() => {
                 </div>
               </div>
             </div>
-            <div className="row px-xl-5">
-              <div className="new-products-carousel bg-white owl-carousel js-new-products-carousel col-12 d-flex justify-content-center align-items-center">
-                <div className="product-box horizontal bg--white color-1 right-line bottom-line col-4">
-                  <div className="product-box__img">
-                    <img
-                      src="assets/img/products/electronics-2-250x278.jpg"
-                      alt="product"
-                      className="primary-image"
-                    />
-                    <img
-                      src="assets/img/products/electronics-3-250x278.jpg"
-                      alt="product"
-                      className="secondary-image"
-                    />
-                  </div>
-                  <div className="product-box__content">
-                    <h3 className="product-box__title">
-                      <a href="single-product.html">Integer eget augue</a>
-                    </h3>
-                    <div className="ratings">
-                      <i className="fa fa-star rated" />
-                      <i className="fa fa-star rated" />
-                      <i className="fa fa-star rated" />
-                      <i className="fa fa-star" />
-                      <i className="fa fa-star" />
+            <div className="new-products-carousel bg-white owl-carousel js-new-products-carousel col-12 d-flex justify-content-center align-items-center">
+              <div className="row">
+                {products.map((product, key) => (
+                  <div className="col-6 col-md-4 col-lg-3" key={key}>
+                    <div className="product-box horizontal bg--white color-1 right-line bottom-line">
+                      <div className="product-box__img">
+                        <img
+                          src={image + product.img}
+                          alt="product"
+                          className="primary-image"
+                        />
+                        <img
+                          src={image + product.img}
+                          alt="product"
+                          className="secondary-image"
+                        />
+                      </div>
+                      <div className="product-box__content">
+                        <h3 className="product-box__title">
+                          <a href="single-product.html">{product.name}</a>
+                        </h3>
+                        <div className="ratings">
+                          <i className="fa fa-star rated" />
+                          <i className="fa fa-star rated" />
+                          <i className="fa fa-star rated" />
+                          <i className="fa fa-star" />
+                          <i className="fa fa-star" />
+                        </div>
+                        <div className="product-box__price">
+                          <span className="sale-price">{product.price}</span>
+                        </div>
+                      </div>
+                      <div className="product-box__action action-1">
+                        <a
+                          href="cart.html"
+                          className="add-to-cart"
+                          data-bs-toggle="tooltip"
+                          data-bs-placement="top"
+                          title="Add to cart"
+                        >
+                          <i className="fa fa-shopping-bag" />
+                        </a>
+                      </div>
                     </div>
-                    <div className="product-box__price">
-                      <span className="sale-price">$100.00</span>
-                    </div>
                   </div>
-                  <div className="product-box__action action-1">
-                    <a
-                      href="cart.html"
-                      className="add-to-cart"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="Add to cart"
-                    >
-                      <i className="fa fa-shopping-bag" />
-                    </a>
-                  </div>
-                </div>
-                
+                ))}
               </div>
             </div>
           </div>

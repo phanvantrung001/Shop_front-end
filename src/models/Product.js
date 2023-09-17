@@ -5,13 +5,15 @@ class Product {
   }
   async all() {
     const res = await axios.get(this.api_url);
-    console.log(res.data);
+    // console.log(res.data);
     return res.data;
   }
 
   async find(id) {
-    const data = await axios.get(this.api_url + id);
-    return data.data;
+    const response = await axios.get(this.api_url + id);
+    const data = response.data;
+    console.log(data); // In ra dữ liệu nhận được từ phía máy chủ
+    return data;
   }
 
   async store(data) {
