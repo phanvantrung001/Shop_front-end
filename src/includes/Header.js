@@ -1,6 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import HeaderUser from "../components/header/HeaderUser";
+import { useSelector } from "react-redux";
 
 function Header(props) {
+  const cart = useSelector((state) => state.cart);
+  
+
   return (
     <>
       <header className="header header-1">
@@ -81,9 +87,9 @@ function Header(props) {
                         aria-haspopup="true"
                         aria-expanded="false"
                       >
-                        <span>Language: </span>
-                        <img src="assets/img/header/1.jpg" alt="English" />{" "}
-                        ENGLISH
+                        <span><HeaderUser/> </span>
+                       
+                      
                       </a>
                       <div
                         className="dropdown-menu"
@@ -91,13 +97,14 @@ function Header(props) {
                       >
                         <a className="dropdown-item" href="#">
                           <img src="assets/img/header/1.jpg" alt="English" />{" "}
-                          English
+                          
                         </a>
                         <a className="dropdown-item" href="#">
                           <img src="assets/img/header/2.jpg" alt="Français" />{" "}
                           Français
                         </a>
                       </div>
+                    
                     </div>
                   </div>
                 </div>
@@ -110,7 +117,8 @@ function Header(props) {
           <div className="container">
             <div className="row align-items-center">
               <div className="col-xl-3 tex-xl-left text-center">
-                <a href="index.html" className="logo-box">
+                <Link to="/">
+                <a href="" className="logo-box">
                   <svg
                     width="244"
                     height="44"
@@ -125,6 +133,7 @@ function Header(props) {
                     ></path>
                   </svg>
                 </a>
+                </Link>
               </div>
               <div className="col-xl-5 col-lg-7 d-none d-lg-block">
                 <nav className="main-navigation">
@@ -409,85 +418,92 @@ function Header(props) {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-1 col-md-2 align-self-start">
-                {/* Header Cart Start */}
-                <div className="mini-cart mini-cart--1">
-                  <a className="mini-cart__dropdown-toggle" id="cartDropdown">
-                    <i className="fa fa-shopping-bag mini-cart__icon" />
-                    <sub className="mini-cart__count">0</sub>
-                  </a>
-                  <div className="mini-cart__dropdown-menu">
-                    <div className="mini-cart__content">
-                      <div className="mini-cart__item">
-                        <div className="mini-cart__item--single">
-                          <div className="mini-cart__item--image">
+              <div class="col-lg-1 col-md-2 align-self-start">
+                <div class="mini-cart mini-cart--1">
+                <Link to="/carts">
+                    <div className="shopping-cart" style={{ color: 'red', formsize: '30px' }}>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width={16}
+                            height={16}
+                            fill="currentColor"
+                            className="bi bi-basket"
+                            viewBox="0 0 16 16"
+                        >
+                            <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9H2zM1 7v1h14V7H1zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5z" />
+                        </svg>
+                        <span className="count cart-quantity">
+                            {cart.length}
+                        </span>
+                    </div>
+                </Link>
+                  <div class="mini-cart__dropdown-menu">
+                    <div class="mini-cart__content">
+                      <div class="mini-cart__item">
+                        <div class="mini-cart__item--single">
+                          <div class="mini-cart__item--image">
                             <img
                               src="assets/img/products/electronics-4-150x167.jpg"
                               alt="product"
                             />
                           </div>
-                          <div className="mini-cart__item--content">
+                          <div class="mini-cart__item--content">
                             <h4>
                               <a href="single-product.html">
                                 Odio tortor consequat
-                              </a>{" "}
+                              </a>
                             </h4>
                             <p>Qty: 1</p>
                             <p>$100.00</p>
                           </div>
-                          <a className="mini-cart__item--remove" href="">
-                            <i className="fa fa-times" />
+                          <a class="mini-cart__item--remove" href="">
+                            <i class="fa fa-times"></i>
                           </a>
                         </div>
-                        <div className="mini-cart__item--single">
-                          <div className="mini-cart__item--image">
+                        <div class="mini-cart__item--single">
+                          <div class="mini-cart__item--image">
                             <img
                               src="assets/img/products/furniture-6-150x167.jpg"
                               alt="product"
                             />
                           </div>
-                          <div className="mini-cart__item--content">
+                          <div class="mini-cart__item--content">
                             <h4>
                               <a href="single-product.html">
                                 Integer eget augue
-                              </a>{" "}
+                              </a>
                             </h4>
                             <p>Qty: 1</p>
                             <p>$100.00</p>
                           </div>
-                          <a className="mini-cart__item--remove" href="">
-                            <i className="fa fa-times" />
+                          <a class="mini-cart__item--remove" href="">
+                            <i class="fa fa-times"></i>
                           </a>
                         </div>
                       </div>
-                      <div className="mini-cart__total">
+                      <div class="mini-cart__total">
                         <h4>
-                          <span className="mini-cart__total--title">
-                            Subtotal
-                          </span>
-                          <span className="mini-cart__total--ammount">
-                            $0.00
-                          </span>
+                          <span class="mini-cart__total--title">Subtotal</span>
+                          <span class="mini-cart__total--ammount">$0.00</span>
                         </h4>
                       </div>
-                      <div className="mini-cart__btn">
+                      <div class="mini-cart__btn">
                         <a
                           href="cart.html"
-                          className="btn btn-small btn-icon btn-style-1 color-1"
+                          class="btn btn-small btn-icon btn-style-1 color-1"
                         >
-                          View Cart <i className="fa fa-angle-right" />
+                          View Cart <i class="fa fa-angle-right"></i>
                         </a>
                         <a
                           href="checkout.html"
-                          className="btn btn-small btn-icon btn-style-1 color-1"
+                          class="btn btn-small btn-icon btn-style-1 color-1"
                         >
-                          Checkout <i className="fa fa-angle-right" />
+                          Checkout <i class="fa fa-angle-right"></i>
                         </a>
                       </div>
                     </div>
                   </div>
                 </div>
-                {/* Header Cart End */}
               </div>
             </div>
           </div>
@@ -510,7 +526,6 @@ function Header(props) {
                       <a href="index.html" className="mainmenu__link">
                         Home
                       </a>
-                      
                     </li>
                     <li className="mainmenu__item menu-item-has-children sticky-has-child sticky-has-child">
                       <a href="shop.html" className="mainmenu__link">

@@ -16,7 +16,11 @@ function Home(props) {
         console.error(err);
       });
   }, []);
-
+  const [visibleProducts, setVisibleProducts] = useState(6);
+    // Hàm xử lý khi nhấn vào nút "Show more"
+    const handleShowMore = () => {
+        setVisibleProducts(visibleProducts + 3);
+    };
   return (
     <LayoutMaster>
       <>
@@ -102,52 +106,23 @@ function Home(props) {
             </div>
             <div className="new-products-carousel bg-white owl-carousel js-new-products-carousel col-12 d-flex justify-content-center align-items-center">
               <div className="row">
-                {products.map((product, key) => (
-                  <div className="col-6 col-md-4 col-lg-3" key={key}>
-                    <div className="product-box horizontal bg--white color-1 right-line bottom-line">
-                      <div className="product-box__img">
-                        <img
-                          src={image + product.img}
-                          alt="product"
-                          className="primary-image"
-                        />
-                        <img
-                          src={image + product.img}
-                          alt="product"
-                          className="secondary-image"
-                        />
-                      </div>
-                      <div className="product-box__content">
-                        <h3 className="product-box__title">
-                          <a href="single-product.html">{product.name}</a>
-                        </h3>
-                        <div className="ratings">
-                          <i className="fa fa-star rated" />
-                          <i className="fa fa-star rated" />
-                          <i className="fa fa-star rated" />
-                          <i className="fa fa-star" />
-                          <i className="fa fa-star" />
-                        </div>
-                        <div className="product-box__price">
-                          <span className="sale-price">{product.price}</span>
-                        </div>
-                      </div>
-                      <div className="product-box__action action-1">
-                        <a
-                          href="cart.html"
-                          className="add-to-cart"
-                          data-bs-toggle="tooltip"
-                          data-bs-placement="top"
-                          title="Add to cart"
-                        >
-                          <i className="fa fa-shopping-bag" />
-                        </a>
-                      </div>
-                    </div>
+                {products.slice(0,visibleProducts).map((product, key) => (
+                  <div className="col-6 col-md-4 col-lg-4" >
+                   <ProductItem key={key} product={product} />
                   </div>
+                  
                 ))}
+                {visibleProducts < products.length && (
+                <div className="col-12 text-center m-3">
+                    <button className="btn btn-success load-more-product" onClick={handleShowMore}>
+                        Show more
+                    </button>
+                </div>
+            )}
+                
               </div>
             </div>
+           
           </div>
         </div>
       </>
