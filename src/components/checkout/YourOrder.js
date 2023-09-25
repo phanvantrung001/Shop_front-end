@@ -19,7 +19,7 @@ function YourOrder(props) {
         console.error(err);
       });
   }, []);
-  
+
   const handleRemove = (index) => {
     const newCart = [...cart];
     newCart.splice(index, 1);
@@ -59,7 +59,6 @@ function YourOrder(props) {
                     />
                   </p>
                   <p>{cartItem.quantity}</p>
-
                 </div>
               );
             } else {
@@ -80,7 +79,15 @@ function YourOrder(props) {
         <div className="pt-2">
           <div className="d-flex justify-content-between mt-2">
             <h5>Total</h5>
-            <h5> <NumericFormat value={totalPrice + 20000} displayType="text" thousandSeparator={true} suffix=" VNĐ" /></h5>
+            <h5>
+              {" "}
+              <NumericFormat
+                value={totalPrice + 20000}
+                displayType="text"
+                thousandSeparator={true}
+                suffix=" VNĐ"
+              />
+            </h5>
           </div>
         </div>
       </div>
